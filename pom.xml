@@ -29,10 +29,15 @@
 			<version>3.3-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-	<groupId>joda-time</groupId>
-	<artifactId>joda-time</artifactId>
-	<version>2.4</version>
-</dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.joda</groupId>
+			<artifactId>joda-convert</artifactId>
+			<version>1.2</version>
+		</dependency>
 		
 	</dependencies>
 </project>
