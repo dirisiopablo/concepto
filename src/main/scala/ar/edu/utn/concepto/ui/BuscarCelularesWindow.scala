@@ -14,9 +14,10 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
-import ar.edu.celulares.applicationModel.BuscadorCelular
+import ar.edu.utn.concepto.runnable.MateriasApplication
 import ar.edu.utn.concepto.domain.Celular
-import ar.edu.celulares.controller.SiNoTransformer
+import ar.edu.utn.concepto.controller.SiNoTransformer
+import ar.edu.celulares.applicationModel.BuscadorCelular
 
 
 /**
