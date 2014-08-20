@@ -32,7 +32,6 @@ object HomeMaterias extends CollectionBasedHome[Materia] {
 		materia.profCursada = profCursada
 		materia.notas = notas
 		materia.ubicacion = ubicacion
-		validateCreate(materia)
 		this.create(materia)
 	}
 	
