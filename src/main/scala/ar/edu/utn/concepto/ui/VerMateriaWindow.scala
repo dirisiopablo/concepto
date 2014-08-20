@@ -23,7 +23,7 @@ import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.bindings.NotNullObservable
 
 class VerMateriaWindow(owner: WindowOwner, model: MateriaInfo) extends Dialog[MateriaInfo](owner, model) {
-
+	getModelObject.search()
 	override def createMainTemplate(mainPanel: Panel) = {
 
 		this.setTitle("Nueva materia")
@@ -103,8 +103,8 @@ class VerMateriaWindow(owner: WindowOwner, model: MateriaInfo) extends Dialog[Ma
 		actionsPanel.setLayout(new HorizontalLayout)
 		var crear = new Button(actionsPanel)
 			.setCaption("Nuevo")
-			.onClick(new MessageSend(this, "crearNota"))
-			
+			.onClick(new MessageSend(this, "crearNota"))			
+		
 		var edit = new Button(actionsPanel)
 			.setCaption("Editar")
 			.onClick(new MessageSend(this, "modificarNota"))
@@ -136,7 +136,7 @@ class VerMateriaWindow(owner: WindowOwner, model: MateriaInfo) extends Dialog[Ma
     this.openDialog(new CrearNotaWindow(this))
   }
 
-  def modificarCelular() {
+  def modificarNota() {
     this.openDialog(new EditarNotaWindow(this, getModelObject.notaSeleccionada))
   }
 

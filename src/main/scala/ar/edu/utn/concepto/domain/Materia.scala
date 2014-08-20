@@ -24,13 +24,13 @@ class Materia extends Entity {
 	override def toString = nombre
 	
 	def eliminarNota(_nota: Nota) = {
-//		notas.remove(_nota)
-		var lista = new ArrayList[Nota];
-		for (int i = 0; i < list.size(); i++) {
-		    if(!n.equals(_nota ))
-			lista.add(n)
-		}
-		
-		notas = lista
+		notas.remove(_nota)
+//		var lista = new ArrayList[Nota];
+//		for (int i = 0; i < list.size(); i++) {
+//		    if(!n.equals(_nota ))
+//			lista.add(n)
+//		}
+//		
+//		notas = lista
 	}
 }

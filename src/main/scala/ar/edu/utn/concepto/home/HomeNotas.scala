@@ -32,12 +32,16 @@ object HomeNotas extends CollectionBasedHome[Nota] {
 	def validarNotaDuplicada(nota: Nota): Unit = {
 		val descripcion = nota.descripcion
 		val materia = nota.materia
-		if (!this.search(materia, descripcion).isEmpty) {
+		if (!this.searchNota(materia, descripcion).isEmpty) {
 			throw new UserException("Ya existe una nota con descripcion: " + descripcion)
 		}
 	}
 
-	def search(materia: String, descripcion: String) =
+	def search(materia: Materia)={
+	 notas.filter { nota => this.coincide(materia.nombre, nota.materia) }
+	}
+	
+	def searchNota(materia: String, descripcion: String) =
 		notas.filter { nota => this.coincide(descripcion, nota.descripcion) && this.coincide(materia, nota.materia) }
 
 	//Esto se fija si ya existía la nota por descripción. Se puede usar para cualquier tipo de parámetro.

@@ -25,9 +25,7 @@ class EditarNotaWindow(owner: WindowOwner, model: Nota) extends Dialog[Nota](own
 
 	override def createFormPanel(mainPanel: Panel) = {
 		var form = new Panel(mainPanel)
-		form.setLayout(new ColumnLayout(2))
-		new Label(form).setText("Nombre de la Materia")
-		new TextBox(form).bindValueToProperty("materia")
+		form.setLayout(new ColumnLayout(2))		
 		new Label(form).setText("Fecha")
 		new TextBox(form).bindValueToProperty("fecha")
 		new Label(form).setText("Descripcion")
@@ -39,7 +37,7 @@ class EditarNotaWindow(owner: WindowOwner, model: Nota) extends Dialog[Nota](own
 	override def addActions(actions: Panel) = {
 		new Button(actions)
 			.setCaption("Aceptar")
-			.onClick(new MessageSend(this, "accept"))
+			.onClick(new MessageSend(this,"accept"))
 			.setAsDefault.disableOnError
 
 		new Button(actions) //

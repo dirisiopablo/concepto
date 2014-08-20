@@ -12,7 +12,7 @@ class MateriaInfo(_materia: Materia) extends Serializable {
 
 	var materia : Materia = _materia
 	var notaSeleccionada : Nota =_
-	
+	var resultados : java.util.List[Nota] =_
 	// ********************************************************
 	// ** Acciones
 	// ********************************************************
@@ -20,8 +20,12 @@ class MateriaInfo(_materia: Materia) extends Serializable {
 	def getUbicaciones = HomeUbicaciones.ubicaciones
 	
 	def eliminarNotaSeleccionada() = {
-		materia.eliminarNota(notaSeleccionada)
-		
+		materia.eliminarNota(notaSeleccionada)		
+	}
+	
+	def search() = { 
+		resultados = new ArrayList[Nota]		
+		resultados = HomeNotas.search(materia)	
 	}
 	
 	
