@@ -18,6 +18,10 @@ import ar.edu.utn.concepto.runnable.MateriasApplication
 import ar.edu.utn.concepto.domain.Celular
 import ar.edu.utn.concepto.controller.SiNoTransformer
 import ar.edu.celulares.applicationModel.BuscadorCelular
+import ar.edu.utn.concepto.domain.Materia
+import org.uqbar.arena.widgets.Selector
+import javafx.beans.property.SetProperty
+import ar.edu.celulares.applicationModel.SeguidorCarrera
 
 
 /**
@@ -27,7 +31,7 @@ import ar.edu.celulares.applicationModel.BuscadorCelular
  *
  * @author ?
  */
-class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCelular](parent, new BuscadorCelular) {
+class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[SeguidorCarrera](parent, new SeguidorCarrera) {
 
   getModelObject.search()
 
@@ -37,13 +41,14 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
    * de esa búsqueda
    */
   override def createMainTemplate(mainPanel: Panel) = {
-    this.setTitle("Buscador de Celulares")
-    this.setTaskDescription("Ingrese los parámetros de búsqueda")
+    this.setTitle("Seguidor de carrera")
+//    this.setTaskDescription("Ingrese los parámetros de búsqueda")
 
     super.createMainTemplate(mainPanel)
 
-    this.createResultsGrid(mainPanel)
-    this.createGridActions(mainPanel)
+    this.createMateriasPanel(mainPanel)
+//    this.createResultsGrid(mainPanel)
+//    this.createGridActions(mainPanel)
   }
 
   // *************************************************************************
@@ -53,22 +58,15 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
    * El panel principal de búsuqeda permite filtrar por número o nombre
    */
   override def createFormPanel(mainPanel: Panel) = {
-    var searchFormPanel = new Panel(mainPanel)
-    searchFormPanel.setLayout(new ColumnLayout(2))
+    var materiasPanel = new Panel(mainPanel)
+    materiasPanel.setLayout(new ColumnLayout(1))
 
-    var labelNumero = new Label(searchFormPanel)
-    labelNumero.setText("Número")
-    labelNumero.setForeground(Color.BLUE)
-
-    new TextBox(searchFormPanel).bindValueToProperty("numero")
-
-    var labelNombre = new Label(searchFormPanel)
-    labelNombre.setText("Nombre del cliente")
-    labelNombre.setForeground(Color.BLUE)
-
-    new TextBox(searchFormPanel).bindValueToProperty("nombre")
+    var labelMateria = new Label(materiasPanel)
+    labelMateria.setText("Materias")
+    labelMateria.setForeground(Color.BLUE)    
+    
   }
-
+  
   /**
    * Acciones asociadas de la pantalla principal. Interesante para ver es cómo funciona el binding que mapea
    * la acción que se dispara cuando el usuario presiona click Para que el binding sea flexible necesito
@@ -79,21 +77,17 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
    *
    */
   override def addActions(actionsPanel: Panel) {
-    new Button(actionsPanel)
-      .setCaption("Buscar")
-      .onClick(new MessageSend(getModelObject, "search"))
-      //			TODO: Convertir este bloque de código a un Action.execute()
-      //			.onClick { => getModelObject.search }
-      .setAsDefault
-      .disableOnError
-
     new Button(actionsPanel) //
-      .setCaption("Limpiar")
-      .onClick(new MessageSend(getModelObject, "clear"))
-
-    new Button(actionsPanel) //
-      .setCaption("Nuevo Celular")
-      .onClick(new MessageSend(this, "crearCelular"))
+      .setCaption("Nueva materia")
+      .onClick(new MessageSend(this, "crearMateria"))
+      
+    var ver = new Button(actionsPanel) //
+      .setCaption("Ver materia")
+      .onClick(new MessageSend(this, "verMateria"))
+//      .bindEnabled(modelObservable)
+      
+    var elementSelected = new NotNullObservable("materiaSeleccionada")
+    	ver.bindEnabled(elementSelected)
   }
 
   // *************************************************************************
@@ -111,6 +105,12 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
     table.bindItemsToProperty("resultados")
     table.bindValueToProperty("celularSeleccionado")
     this.describeResultsGrid(table)
+  }
+  
+  def createMateriasPanel(mainPanel: Panel){
+	  var list = new Selector[Materia](mainPanel)
+	  list.setHeigth(450)
+	  list.setWidth(200)
   }
 
   /**
@@ -154,7 +154,7 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
       .onClick(new MessageSend(getModelObject, "eliminarCelularSeleccionado"))
 
     // Deshabilitar los botones si no hay ningún elemento seleccionado en la grilla.
-    var elementSelected = new NotNullObservable("celularSeleccionado")
+    var elementSelected = new NotNullObservable("materiaSeleccionada")
     remove.bindEnabled(elementSelected)
     edit.bindEnabled(elementSelected)
   }
@@ -162,17 +162,25 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
   // ********************************************************
   // ** Acciones
   // ********************************************************
-  def crearCelular() {
-    this.openDialog(new CrearCelularWindow(this))
-  }
-
-  def modificarCelular() {
-    this.openDialog(new EditarCelularWindow(this, getModelObject.celularSeleccionado))
-  }
+//  def crearCelular() {
+//    this.openDialog(new CrearCelularWindow(this))
+//  }
+//
+//  def modificarCelular() {
+//    this.openDialog(new EditarCelularWindow(this, getModelObject.celularSeleccionado))
+//  }
 
   def openDialog(dialog: Dialog[_]) {
     dialog.onAccept(new MessageSend(getModelObject, "search"))
     dialog.open
+  }
+  
+  def verMateria() {
+    this.openDialog(new VerMateriaWindow(this, getModelObject.materiaSeleccionada))
+  }
+  
+  def crearMateria() {
+    this.openDialog(new CrearMateriaWindow(this))
   }
 
 }
