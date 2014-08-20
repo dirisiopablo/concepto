@@ -10,23 +10,22 @@ import java.util.ArrayList
 @org.uqbar.commons.utils.Observable
 class MateriaInfo(_materia: Materia) extends Serializable {
 
-	var materia : Materia = _materia
-	var notaSeleccionada : Nota =_
-	var resultados : java.util.List[Nota] =_
+	var materia: Materia = _materia
+	var notaSeleccionada: Nota = _
+	
 	// ********************************************************
 	// ** Acciones
 	// ********************************************************
 
 	def getUbicaciones = HomeUbicaciones.ubicaciones
-	
+
 	def eliminarNotaSeleccionada() = {
-		materia.eliminarNota(notaSeleccionada)		
+		HomeNotas.delete(notaSeleccionada)
+//		materia.eliminarNota(notaSeleccionada)
 	}
-	
-	def search() = { 
-		resultados = new ArrayList[Nota]		
-		resultados = HomeNotas.search(materia)	
+
+	def search() = {
+		materia.notas = HomeNotas.search(materia)
 	}
-	
-	
+
 }

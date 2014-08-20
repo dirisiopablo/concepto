@@ -23,7 +23,9 @@ import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.bindings.NotNullObservable
 
 class VerMateriaWindow(owner: WindowOwner, model: MateriaInfo) extends Dialog[MateriaInfo](owner, model) {
+
 	getModelObject.search()
+
 	override def createMainTemplate(mainPanel: Panel) = {
 
 		this.setTitle("Nueva materia")
@@ -97,57 +99,52 @@ class VerMateriaWindow(owner: WindowOwner, model: MateriaInfo) extends Dialog[Ma
 			.bindContentsToTransformer(new NotaAprobadaSiNoTransformer)
 	}
 
-
 	def createGridActions(mainPanel: Panel) = {
 		var actionsPanel = new Panel(mainPanel)
 		actionsPanel.setLayout(new HorizontalLayout)
 		var crear = new Button(actionsPanel)
 			.setCaption("Nuevo")
-			.onClick(new MessageSend(this, "crearNota"))			
-		
+			.onClick(new MessageSend(this, "crearNota"))
+
 		var edit = new Button(actionsPanel)
 			.setCaption("Editar")
 			.onClick(new MessageSend(this, "modificarNota"))
 
 		var remove = new Button(actionsPanel)
 			.setCaption("Eliminar")
-			.onClick(new MessageSend(getModelObject, "eliminarNotaSeleccionada"))
+			.onClick(new MessageSend(this, "eliminarNotaSeleccionada"))
 
 		// Deshabilitar los botones si no hay ningún elemento seleccionado en la grilla.
 		var elementSelected = new NotNullObservable("notaSeleccionada")
 		remove.bindEnabled(elementSelected)
 		edit.bindEnabled(elementSelected)
 	}
-	
+
 	//Aciones
-	
+
 	override def addActions(actions: Panel) = {
-//		new Button(actions)
-//			.setCaption("Aceptar")
-//			.onClick(new MessageSend(this, "accept"))
-//			.setAsDefault.disableOnError
-//
-//		new Button(actions) //
-//			.setCaption("Cancelar")
-//			.onClick(new MessageSend(this, "cancel"))
+	}
+
+	def crearNota() {
+		this.openDialog(new CrearNotaWindow(this, getModelObject))
+	}
+
+	def modificarNota() {
+		this.openDialog(new EditarNotaWindow(this, getModelObject.notaSeleccionada))
 	}
 	
-	def crearNota() {
-    this.openDialog(new CrearNotaWindow(this))
-  }
+	def eliminarNotaSeleccionada(){
+		getModelObject.eliminarNotaSeleccionada
+		reload
+	}
 
-  def modificarNota() {
-    this.openDialog(new EditarNotaWindow(this, getModelObject.notaSeleccionada))
-  }
+	def openDialog(dialog: Dialog[_]) {
+		dialog.onAccept(new MessageSend(getModelObject, "search"))
+		dialog.open
+	}
 
-  def openDialog(dialog: Dialog[_]) {
-    dialog.onAccept(new MessageSend(getModelObject, "search"))
-    dialog.open
-  }
-
-	override def executeTask() = {
-		//		HomeMaterias.create(getModelObject)
-		super.executeTask()
+	def reload() {
+		getModelObject.search()
 	}
 
 }

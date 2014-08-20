@@ -15,32 +15,20 @@ import java.util.Date
 @Observable
 object HomeMaterias extends CollectionBasedHome[Materia] {
 
-	var nota = new Nota()
-	nota.materia = "Análisis I"
-	nota.fecha = new Date()
-	nota.descripcion = "Parcial 1"
-	nota.aprobada = true
-	var listaNota: java.util.List[Nota] = new ArrayList[Nota]
-	listaNota.add(nota)
 	var ubi = new Ubicacion()
 	ubi.descripcion = "Anual - Nivel 2"
 
-	this.create("Análisis I", 2010, true, "VIEJA", listaNota, ubi)
+	this.create("Análisis I", 2010, true, "VIEJA", ubi)
 
-	def create(nombre: String, anioCursada: Integer, finalAprobado: Boolean, profCursada: String, notas: java.util.List[Nota], ubicacion: Ubicacion): Unit = {
+	def create(nombre: String, anioCursada: Integer, finalAprobado: Boolean, profCursada: String, ubicacion: Ubicacion): Unit = {
 		var materia = new Materia()
 		materia.nombre = nombre
 		materia.anioCursada = anioCursada
 		materia.finalAprobado = finalAprobado
 		materia.profCursada = profCursada
-		materia.notas = notas
 		materia.ubicacion = ubicacion
 
 		this.create(materia)
-	}
-
-	def agregarNotaA(nota: Nota, materia: String) = {
-		materias.find(m => this.coincide(materia, m.nombre)).get.notas.add(nota)
 	}
 
 	override def validateCreate(materia: Materia): Unit = {

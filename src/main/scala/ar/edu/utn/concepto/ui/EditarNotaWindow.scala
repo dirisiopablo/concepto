@@ -9,16 +9,10 @@ import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
-import ar.edu.utn.concepto.domain.Celular
-import ar.edu.utn.concepto.domain.Modelo
 import org.uqbar.arena.layout.ColumnLayout
-import ar.edu.utn.concepto.home.HomeModelos
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.actions.MessageSend
-import ar.edu.utn.concepto.domain.Modelo
-import ar.edu.utn.concepto.home.HomeModelos
 import collection.JavaConversions._
-import ar.edu.utn.concepto.home.HomeModelos
 import ar.edu.utn.concepto.domain.Nota
 
 class EditarNotaWindow(owner: WindowOwner, model: Nota) extends Dialog[Nota](owner, model) {

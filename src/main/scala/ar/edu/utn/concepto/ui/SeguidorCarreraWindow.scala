@@ -25,7 +25,7 @@ import ar.edu.utn.concepto.domain.Materia
  *
  * @author ?
  */
-class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[SeguidorCarrera](parent, new SeguidorCarrera) {
+class SeguidorCarreraWindow(parent: WindowOwner) extends SimpleWindow[SeguidorCarrera](parent, new SeguidorCarrera) {
 
 	getModelObject.getMaterias
 

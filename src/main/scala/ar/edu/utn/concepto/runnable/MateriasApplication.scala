@@ -1,10 +1,10 @@
 package ar.edu.utn.concepto.runnable
 
-import ar.edu.utn.concepto.ui.BuscarCelularesWindow
 import org.uqbar.arena.Application
+import ar.edu.utn.concepto.ui.SeguidorCarreraWindow
 
 object MateriasApplication extends Application with App {
 	
-	override def createMainWindow() = new BuscarCelularesWindow(this)
+	override def createMainWindow() = new SeguidorCarreraWindow(this)
 	start()
 }

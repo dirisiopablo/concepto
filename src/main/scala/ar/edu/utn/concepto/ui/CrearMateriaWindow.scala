@@ -1,9 +1,6 @@
 package ar.edu.utn.concepto.ui
 
-import ar.edu.utn.concepto.domain.Celular
 import org.uqbar.arena.windows.WindowOwner
-import ar.edu.utn.concepto.home.HomeCelulares
-import ar.edu.utn.concepto.home.HomeCelulares
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Label

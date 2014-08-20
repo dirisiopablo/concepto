@@ -12,13 +12,36 @@ import java.util.Date
 @Observable
 object HomeNotas extends CollectionBasedHome[Nota] {
 
+	var nota1 = new Nota()
+	nota1.materia = "Análisis I"
+	nota1.fecha = new Date()
+	nota1.descripcion = "Parcial 1"
+	nota1.aprobada = true
+	
+	var nota2 = new Nota()
+	nota2.materia = "Análisis I"
+	nota2.fecha = new Date()
+	nota2.descripcion = "Parcial 2"
+	nota2.aprobada = true
+	
+	var nota3 = new Nota()
+	nota3.materia = "Análisis II"
+	nota3.fecha = new Date()
+	nota3.descripcion = "Parcial 1"
+	nota3.aprobada = true
+	
+	this.create(nota1)
+	this.create(nota2)
+	this.create(nota3)
+	
 	def create(materia: String, fecha: Date, descripcion: String, aprobada: Boolean): Unit = {
+		
 		var nota = new Nota()
 		nota.materia = materia
 		nota.fecha = fecha
 		nota.descripcion = descripcion
 		nota.aprobada = aprobada
-		HomeMaterias.agregarNotaA(nota, materia)
+		
 		this.create(nota)
 	}
 
@@ -37,12 +60,12 @@ object HomeNotas extends CollectionBasedHome[Nota] {
 		}
 	}
 
-	def search(materia: Materia)={
-	 notas.filter { nota => this.coincide(materia.nombre, nota.materia) }
+	def search(materia: Materia) = {
+		allInstances.filter { nota => nota.esDeMateria(materia) }
 	}
-	
+
 	def searchNota(materia: String, descripcion: String) =
-		notas.filter { nota => this.coincide(descripcion, nota.descripcion) && this.coincide(materia, nota.materia) }
+		allInstances.filter { nota => this.coincide(descripcion, nota.descripcion) && this.coincide(materia, nota.materia) }
 
 	//Esto se fija si ya existía la nota por descripción. Se puede usar para cualquier tipo de parámetro.
 	def coincide(expectedValue: Any, realValue: Any): Boolean = {
@@ -55,15 +78,10 @@ object HomeNotas extends CollectionBasedHome[Nota] {
 		return realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase())
 	}
 
-	def getNotasBy(materia: Materia) = {
-		val descripcionDeMateria = materia.nombre
-		notas.filter(nota => this.coincide(descripcionDeMateria, nota.materia))
-	}
-
-
 	override def getEntityType = classOf[Nota]
 
 	override def createExample = new Nota
 
 	override def getCriterio(example: Nota) = null
+	
 }

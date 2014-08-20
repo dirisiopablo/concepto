@@ -12,6 +12,7 @@ class Nota() extends Entity {
 	var descripcion: String =_
 	var aprobada: Boolean = false
 	
+	def esDeMateria(_mat: Materia) = _mat.nombre == materia
 	
 	def validar():Unit ={
 	  if(fecha == null)
