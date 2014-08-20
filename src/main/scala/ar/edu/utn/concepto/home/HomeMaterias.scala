@@ -22,7 +22,7 @@ object HomeMaterias extends CollectionBasedHome[Materia] {
 	var ubi = new Ubicacion()
 	ubi.descripcion = "Anual - Nivel 2"
 	
-	this.create("Análisis I", 2010, false, "VIEJA", listaNota, ubi)
+	this.create("Análisis I", 2010, true, "VIEJA", listaNota, ubi)
 
 	def create(nombre: String, anioCursada: Integer, finalAprobado: Boolean, profCursada: String, notas: List[Nota], ubicacion: Ubicacion): Unit = {
 		var materia = new Materia()

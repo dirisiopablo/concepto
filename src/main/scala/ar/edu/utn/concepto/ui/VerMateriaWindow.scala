@@ -25,9 +25,17 @@ class VerMateriaWindow (owner: WindowOwner, model: Materia) extends Dialog[Mater
 		form.setLayout(new ColumnLayout(2))
 		
 		new Label(form)
-			.setText("Nombre: ")
-			
+			.setText(model.nombre)
+			.setFontSize(18)
+		
+		new Label(form)
+			.setText("Año cursada: ")
 		new TextBox(form)
+			.bindValueToProperty("anioCursada")
+			
+		new CheckBox(form)
+			.bindValueToProperty("finalAprobado")
+			
 	}
 
 	override def addActions(actions: Panel) = {
