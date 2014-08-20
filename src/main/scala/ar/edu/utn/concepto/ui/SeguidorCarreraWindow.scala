@@ -174,7 +174,7 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[SeguidorCa
 //  }
 
   def openDialog(dialog: Dialog[_]) {
-    dialog.onAccept(new MessageSend(getModelObject, "search"))
+    dialog.onAccept(new MessageSend(getModelObject, "getMaterias"))
     dialog.open
   }
   

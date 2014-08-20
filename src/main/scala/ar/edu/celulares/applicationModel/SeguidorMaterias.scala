@@ -38,9 +38,7 @@ class SeguidorCarrera extends Serializable {
 		resultados = new ArrayList[Materia]
 
 		// FIN WORKAROUND
-		resultados = HomeMaterias.materias
-		
-		// también se puede llamar homeCelulares.search(numero, nombre) 
+		resultados = HomeMaterias.materias 
 	}
 
 	def clear() = {

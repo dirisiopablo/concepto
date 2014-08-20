@@ -12,6 +12,7 @@ import org.uqbar.commons.model.CollectionBasedHome
 
 @Observable
 object HomeMaterias extends CollectionBasedHome[Materia] {
+	
 	var nota = new Nota()
 	nota.fecha = new DateTime("2014-08-12")
 	nota.descripcion = "Parcial 1"
@@ -20,6 +21,7 @@ object HomeMaterias extends CollectionBasedHome[Materia] {
 	listaNota :+ nota
 	var ubi = new Ubicacion()
 	ubi.descripcion = "Anual - Nivel 2"
+	
 	this.create("Análisis I", 2010, false, "VIEJA", listaNota, ubi)
 
 	def create(nombre: String, anioCursada: Integer, finalAprobado: Boolean, profCursada: String, notas: List[Nota], ubicacion: Ubicacion): Unit = {
@@ -30,7 +32,7 @@ object HomeMaterias extends CollectionBasedHome[Materia] {
 		materia.profCursada = profCursada
 		materia.notas = notas
 		materia.ubicacion = ubicacion
-		validateCreate(materia)
+		
 		this.create(materia)
 	}
 
