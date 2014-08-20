@@ -1,12 +1,11 @@
 package ar.edu.celulares.applicationModel
-
-import scala.collection.JavaConversions.asScalaBuffer
-import java.util.ArrayList
 import collection.JavaConversions._
 import ar.edu.utn.concepto.domain.Materia
-import ar.edu.utn.concepto.home.HomeMaterias
 import ar.edu.utn.concepto.home.HomeUbicaciones
 import ar.edu.utn.concepto.domain.Nota
+import org.uqbar.commons.utils.Observable
+import ar.edu.utn.concepto.home.HomeNotas
+import java.util.ArrayList
 
 @org.uqbar.commons.utils.Observable
 class MateriaInfo(_materia: Materia) extends Serializable {
@@ -19,5 +18,11 @@ class MateriaInfo(_materia: Materia) extends Serializable {
 	// ********************************************************
 
 	def getUbicaciones = HomeUbicaciones.ubicaciones
-
+	
+	def eliminarNotaSeleccionada() = {
+		materia.eliminarNota(notaSeleccionada)
+		
+	}
+	
+	
 }

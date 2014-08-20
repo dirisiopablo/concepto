@@ -3,6 +3,7 @@ import org.uqbar.commons.model.Entity
 import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.model.UserException
 import java.util.ArrayList
+import ar.edu.utn.concepto.home.HomeNotas
 
 @Observable
 class Materia extends Entity {
@@ -21,4 +22,15 @@ class Materia extends Entity {
 	def estaAprobada = finalAprobado
 
 	override def toString = nombre
+	
+	def eliminarNota(_nota: Nota) = {
+//		notas.remove(_nota)
+		var lista = new ArrayList[Nota];
+		for (int i = 0; i < list.size(); i++) {
+		    if(!n.equals(_nota ))
+			lista.add(n)
+		}
+		
+		notas = lista
+	}
 }

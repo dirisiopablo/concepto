@@ -21,4 +21,10 @@ class Nota() extends Entity {
 	}
 	
 	def estaAprobada = aprobada
+	
+	override def equals(other: Any) = other match { 
+      case that: Nota => (	this.descripcion.toUpperCase.trim == that.descripcion.toUpperCase.trim &&
+    		  				this.materia.toUpperCase.trim == that.materia.toUpperCase.trim)
+      case _ => false 
+	}
 }
