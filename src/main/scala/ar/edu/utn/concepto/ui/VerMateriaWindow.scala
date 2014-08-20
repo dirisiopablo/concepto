@@ -1,22 +1,28 @@
 package ar.edu.utn.concepto.ui
 
-import ar.edu.utn.concepto.domain.Celular
-import org.uqbar.arena.windows.WindowOwner
-import ar.edu.utn.concepto.home.HomeCelulares
-import ar.edu.utn.concepto.home.HomeCelulares
-import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.layout.ColumnLayout
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.TextBox
-import org.uqbar.arena.widgets.Selector
-import org.uqbar.arena.widgets.CheckBox
-import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.actions.MessageSend
-import ar.edu.utn.concepto.domain.Materia
+import org.uqbar.arena.layout.ColumnLayout
+import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.CheckBox
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.Dialog
+import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.commons.utils.Observable
+
+import ar.edu.utn.concepto.domain.Materia
 
 class VerMateriaWindow (owner: WindowOwner, model: Materia) extends Dialog[Materia](owner, model) {
 
+	override def createMainTemplate(mainPanel: Panel) = {
+		this.setTitle("Seguidor de carrera")
+
+		super.createMainTemplate(mainPanel)
+
+		this.createMateriasPanel(mainPanel)
+	}
+	
 	override def createFormPanel(mainPanel: Panel) = {
 		
 		this.setTitle("Nueva materia")
@@ -27,15 +33,18 @@ class VerMateriaWindow (owner: WindowOwner, model: Materia) extends Dialog[Mater
 		new Label(form)
 			.setText(model.nombre)
 			.setFontSize(18)
-		
-		new Label(form)
+	
+	}
+	
+	def createMateriasPanel(mainPanel: Panel) = {
+		new Label(mainPanel)
 			.setText("Año cursada: ")
-		new TextBox(form)
+		new TextBox(mainPanel)
 			.bindValueToProperty("anioCursada")
 			
-		new CheckBox(form)
+		new CheckBox(mainPanel)
 			.bindValueToProperty("finalAprobado")
-			
+
 	}
 
 	override def addActions(actions: Panel) = {

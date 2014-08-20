@@ -1,28 +1,21 @@
 package ar.edu.utn.concepto.ui
 
 import java.awt.Color
+
 import org.uqbar.arena.actions.MessageSend
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.ColumnLayout
-import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.widgets.TextBox
-import org.uqbar.arena.widgets.tables.Column
-import org.uqbar.arena.widgets.tables.Table
+import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
-import ar.edu.utn.concepto.runnable.MateriasApplication
-import ar.edu.utn.concepto.domain.Celular
-import ar.edu.utn.concepto.controller.SiNoTransformer
-import ar.edu.celulares.applicationModel.BuscadorCelular
-import ar.edu.utn.concepto.domain.Materia
-import org.uqbar.arena.widgets.Selector
-import javafx.beans.property.SetProperty
+import org.uqbar.commons.utils.Observable
+
 import ar.edu.celulares.applicationModel.SeguidorCarrera
-import ar.edu.utn.concepto.home.HomeMaterias
+import ar.edu.utn.concepto.domain.Materia
 
 /**
  * Ventana de búsqueda de celulares.
