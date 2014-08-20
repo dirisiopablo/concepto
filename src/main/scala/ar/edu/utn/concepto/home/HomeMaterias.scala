@@ -9,23 +9,25 @@ import org.joda.time.DateTime
 import ar.edu.utn.concepto.domain.Materia
 import org.uqbar.commons.model.UserException
 import org.uqbar.commons.model.CollectionBasedHome
+import java.util.ArrayList
+import java.util.Date
 
 @Observable
 object HomeMaterias extends CollectionBasedHome[Materia] {
-	
+
 	var nota = new Nota()
 	nota.materia = "Análisis I"
-	nota.fecha = new DateTime("2014-08-12")
+	nota.fecha = new Date()
 	nota.descripcion = "Parcial 1"
 	nota.aprobada = true
-	var listaNota: List[Nota] = List[Nota]()
-	listaNota :+ nota
+	var listaNota: java.util.List[Nota] = new ArrayList[Nota]
+	listaNota.add(nota)
 	var ubi = new Ubicacion()
 	ubi.descripcion = "Anual - Nivel 2"
-	
+
 	this.create("Análisis I", 2010, true, "VIEJA", listaNota, ubi)
 
-	def create(nombre: String, anioCursada: Integer, finalAprobado: Boolean, profCursada: String, notas: List[Nota], ubicacion: Ubicacion): Unit = {
+	def create(nombre: String, anioCursada: Integer, finalAprobado: Boolean, profCursada: String, notas: java.util.List[Nota], ubicacion: Ubicacion): Unit = {
 		var materia = new Materia()
 		materia.nombre = nombre
 		materia.anioCursada = anioCursada
@@ -33,14 +35,14 @@ object HomeMaterias extends CollectionBasedHome[Materia] {
 		materia.profCursada = profCursada
 		materia.notas = notas
 		materia.ubicacion = ubicacion
-		
+
 		this.create(materia)
 	}
-	
-	def agregarNotaA(nota: Nota,materia:String)={
-	  materias.find(m => this.coincide(materia,m.nombre)).get.notas = materias.find(m => this.coincide(materia,m.nombre)).get.notas :+ nota
+
+	def agregarNotaA(nota: Nota, materia: String) = {
+		materias.find(m => this.coincide(materia, m.nombre)).get.notas.add(nota)
 	}
-	
+
 	override def validateCreate(materia: Materia): Unit = {
 		materia.validar
 		validarMateriaDuplicada(materia)

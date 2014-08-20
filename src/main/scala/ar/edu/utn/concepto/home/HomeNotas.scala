@@ -7,11 +7,12 @@ import org.joda.time.DateTime
 import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.model.UserException
 import ar.edu.utn.concepto.domain.Materia
+import java.util.Date
 
 @Observable
 object HomeNotas extends CollectionBasedHome[Nota] {
 
-  def create(materia: String, fecha: DateTime, descripcion: String, aprobada: Boolean): Unit = {
+  def create(materia: String, fecha: Date, descripcion: String, aprobada: Boolean): Unit = {
     var nota = new Nota()
     nota.materia = materia
     nota.fecha = fecha

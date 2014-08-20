@@ -7,5 +7,10 @@ import org.uqbar.commons.utils.Observable
 class Ubicacion extends Entity {
 	var descripcion: String =_
 	
-	override def toString:String = descripcion	  
+	override def toString:String = descripcion
+	
+	override def equals(other: Any) = other match { 
+      case that: Ubicacion => this.descripcion.toUpperCase.trim == that.descripcion.toUpperCase.trim 
+      case _ => false 
+	}
 }

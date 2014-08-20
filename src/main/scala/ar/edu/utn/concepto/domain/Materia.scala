@@ -2,6 +2,7 @@ package ar.edu.utn.concepto.domain
 import org.uqbar.commons.model.Entity
 import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.model.UserException
+import java.util.ArrayList
 
 @Observable
 class Materia extends Entity {
@@ -9,7 +10,7 @@ class Materia extends Entity {
 	var anioCursada: Integer = _
 	var finalAprobado: Boolean = false
 	var profCursada: String = _
-	var notas: List[Nota] = List[Nota]()
+	var notas: java.util.List[Nota] = new ArrayList[Nota]
 	var ubicacion: Ubicacion = _
 
 	def validar: Unit = {

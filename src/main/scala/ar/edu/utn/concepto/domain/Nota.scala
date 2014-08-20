@@ -3,11 +3,12 @@ import org.uqbar.commons.model.UserException
 import org.uqbar.commons.model.Entity
 import org.uqbar.commons.utils.Observable
 import org.joda.time.DateTime
+import java.util.Date
 
 @Observable
 class Nota() extends Entity {
 	var materia: String =_
-	var fecha: DateTime =_
+	var fecha: Date =_
 	var descripcion: String =_
 	var aprobada: Boolean = false
 	

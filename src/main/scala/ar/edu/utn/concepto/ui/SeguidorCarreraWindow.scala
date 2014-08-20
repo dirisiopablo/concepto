@@ -1,7 +1,6 @@
 package ar.edu.utn.concepto.ui
 
 import java.awt.Color
-
 import org.uqbar.arena.actions.MessageSend
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.ColumnLayout
@@ -13,8 +12,10 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.commons.utils.Observable
-
 import ar.edu.celulares.applicationModel.SeguidorCarrera
+import ar.edu.utn.concepto.domain.Materia
+import ar.edu.celulares.applicationModel.MateriaInfo
+import ar.edu.utn.concepto.domain.Materia
 import ar.edu.utn.concepto.domain.Materia
 
 /**
@@ -85,7 +86,7 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[SeguidorCa
 	}
 
 	def verMateria() {
-		this.openDialog(new VerMateriaWindow(this, getModelObject.materiaSeleccionada))
+		this.openDialog(new VerMateriaWindow(this, new MateriaInfo(getModelObject.materiaSeleccionada)))
 	}
 
 	def crearMateria() {

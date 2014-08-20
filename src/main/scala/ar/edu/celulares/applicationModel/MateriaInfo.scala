@@ -6,28 +6,18 @@ import collection.JavaConversions._
 import ar.edu.utn.concepto.domain.Materia
 import ar.edu.utn.concepto.home.HomeMaterias
 import ar.edu.utn.concepto.home.HomeUbicaciones
+import ar.edu.utn.concepto.domain.Nota
 
 @org.uqbar.commons.utils.Observable
-class SeguidorCarrera extends Serializable {
+class MateriaInfo(_materia: Materia) extends Serializable {
 
-	var nombre : String = _
-	var resultados : java.util.List[Materia] = _
-	var materiaSeleccionada : Materia = _
-
+	var materia : Materia = _materia
+	var notaSeleccionada : Nota =_
 	
 	// ********************************************************
 	// ** Acciones
 	// ********************************************************
-	def getMaterias = { 
-		// WORKAROUND para que refresque la grilla en las actualizaciones
-		resultados = new ArrayList[Materia]
 
-		// FIN WORKAROUND
-		resultados = HomeMaterias.materias 
-	}
-
-	def clear = {
-		nombre = null
-	}
+	def getUbicaciones = HomeUbicaciones.ubicaciones
 
 }

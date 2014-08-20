@@ -19,13 +19,14 @@ import ar.edu.utn.concepto.domain.Modelo
 import ar.edu.utn.concepto.home.HomeModelos
 import collection.JavaConversions._
 import ar.edu.utn.concepto.home.HomeModelos
+import ar.edu.utn.concepto.domain.Nota
 
-class EditarCelularWindow(owner: WindowOwner, model: Celular) extends Dialog[Celular](owner, model) {
+class EditarNotaWindow(owner: WindowOwner, model: Nota) extends Dialog[Nota](owner, model) {
 
 	override def createFormPanel(mainPanel: Panel) = {
 		var form = new Panel(mainPanel)
 		form.setLayout(new ColumnLayout(2))
-		new Label(form).setText("Número")
+		new Label(form).setText("Fecha")
 		new TextBox(form).bindValueToProperty("numero")
 		new Label(form).setText("Nombre del cliente")
 		new TextBox(form).bindValueToProperty("nombre")
