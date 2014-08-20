@@ -14,6 +14,7 @@ import org.uqbar.commons.model.CollectionBasedHome
 object HomeMaterias extends CollectionBasedHome[Materia] {
 	
 	var nota = new Nota()
+	nota.materia = "Análisis I"
 	nota.fecha = new DateTime("2014-08-12")
 	nota.descripcion = "Parcial 1"
 	nota.aprobada = true
@@ -35,7 +36,9 @@ object HomeMaterias extends CollectionBasedHome[Materia] {
 		
 		this.create(materia)
 	}
+	
 
+	
 	override def validateCreate(materia: Materia): Unit = {
 		materia.validar
 		validarMateriaDuplicada(materia)
