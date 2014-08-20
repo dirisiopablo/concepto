@@ -25,6 +25,8 @@ object HomeNotas extends CollectionBasedHome[Nota] {
     nota.validar()
     validarNotaDuplicada(nota)
   }
+  
+  
 
   def notas: Seq[Nota] = allInstances
 
