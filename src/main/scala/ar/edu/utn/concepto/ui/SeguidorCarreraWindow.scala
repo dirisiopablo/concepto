@@ -22,6 +22,7 @@ import ar.edu.utn.concepto.domain.Materia
 import org.uqbar.arena.widgets.Selector
 import javafx.beans.property.SetProperty
 import ar.edu.celulares.applicationModel.SeguidorCarrera
+import ar.edu.utn.concepto.home.HomeMaterias
 
 
 /**
@@ -33,7 +34,7 @@ import ar.edu.celulares.applicationModel.SeguidorCarrera
  */
 class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[SeguidorCarrera](parent, new SeguidorCarrera) {
 
-  getModelObject.search()
+  getModelObject.getMaterias
 
   /**
    * El default de la vista es un formulario que permite disparar la búsqueda (invocando con super) Además
@@ -111,6 +112,8 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[SeguidorCa
 	  var list = new Selector[Materia](mainPanel)
 	  list.setHeigth(450)
 	  list.setWidth(200)
+	  list.bindItemsToProperty("resultados")
+	  list.bindValueToProperty("materiaSeleccionada")
   }
 
   /**

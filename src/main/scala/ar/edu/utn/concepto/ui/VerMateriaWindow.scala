@@ -12,11 +12,10 @@ import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.widgets.CheckBox
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.actions.MessageSend
-import org.uqbar.arena.windows.Dialog
 import ar.edu.utn.concepto.domain.Materia
-import ar.edu.utn.concepto.home.HomeMaterias
+import org.uqbar.arena.windows.Dialog
 
-class CrearMateriaWindow(owner: WindowOwner) extends Dialog[Materia](owner, new Materia) {
+class VerMateriaWindow (owner: WindowOwner, model: Materia) extends Dialog[Materia](owner, model) {
 
 	override def createFormPanel(mainPanel: Panel) = {
 		
@@ -29,7 +28,6 @@ class CrearMateriaWindow(owner: WindowOwner) extends Dialog[Materia](owner, new 
 			.setText("Nombre: ")
 			
 		new TextBox(form)
-			.bindValueToProperty("nombre")
 	}
 
 	override def addActions(actions: Panel) = {
@@ -45,7 +43,7 @@ class CrearMateriaWindow(owner: WindowOwner) extends Dialog[Materia](owner, new 
 
 	
 	override def executeTask() = {
-		HomeMaterias.create(getModelObject)
+//		HomeMaterias.create(getModelObject)
 		super.executeTask()
 	}
 
