@@ -37,7 +37,9 @@ object HomeMaterias extends CollectionBasedHome[Materia] {
 		this.create(materia)
 	}
 	
-
+	def agregarNotaA(nota: Nota,materia:String)={
+	  materias.find(m => this.coincide(materia,m.nombre)).get.notas = materias.find(m => this.coincide(materia,m.nombre)).get.notas :+ nota
+	}
 	
 	override def validateCreate(materia: Materia): Unit = {
 		materia.validar
