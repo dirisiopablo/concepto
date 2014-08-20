@@ -6,6 +6,7 @@ import org.joda.time.DateTime
 
 @Observable
 class Nota() extends Entity {
+	var materia: String =_
 	var fecha: DateTime =_
 	var descripcion: String =_
 	var aprobada: Boolean = false

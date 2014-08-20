@@ -10,8 +10,9 @@ import org.uqbar.commons.model.UserException
 @Observable
 object HomeNotas extends CollectionBasedHome[Nota] {
 	
-  def create(fecha: DateTime, descripcion:String, aprobada: Boolean): Unit = {
+  def create(materia: String,fecha: DateTime, descripcion:String, aprobada: Boolean): Unit = {
     var nota = new Nota()
+    nota.materia = materia
     nota.fecha = fecha
     nota.descripcion = descripcion
     nota.aprobada = aprobada
@@ -27,13 +28,14 @@ object HomeNotas extends CollectionBasedHome[Nota] {
   
   def validarNotaDuplicada(nota: Nota):Unit={
     val descripcion = nota.descripcion
-    if (!this.search(descripcion).isEmpty) {
+    val materia = nota.materia
+    if (!this.search(materia,descripcion).isEmpty) {
       throw new UserException("Ya existe una nota con descripcion: " + descripcion)
     }
   }
   
-  def search(descripcion: String) = 
-    notas.filter { nota => this.coincide(descripcion, nota.descripcion) }
+  def search(materia: String,descripcion: String) = 
+    notas.filter { nota => this.coincide(descripcion, nota.descripcion) && this.coincide(materia, nota.materia)}
   
   //Esto se fija si ya existía la nota por descripción. Se puede usar para cualquier tipo de parámetro.
   def coincide(expectedValue: Any, realValue: Any): Boolean = {

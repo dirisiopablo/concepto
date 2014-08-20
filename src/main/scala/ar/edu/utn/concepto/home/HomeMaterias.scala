@@ -13,6 +13,7 @@ import org.uqbar.commons.model.CollectionBasedHome
 @Observable
 object HomeMaterias extends CollectionBasedHome[Materia] {
 	var nota = new Nota()
+	nota.materia = "Análisis I"
 	nota.fecha = new DateTime("2014-08-12")
 	nota.descripcion = "Parcial 1"
 	nota.aprobada = true
@@ -21,7 +22,8 @@ object HomeMaterias extends CollectionBasedHome[Materia] {
 	var ubi = new Ubicacion()
 	ubi.descripcion = "Anual - Nivel 2"
 	this.create("Análisis I", 2010, false, "VIEJA", listaNota, ubi)
-
+	
+	
 	def create(nombre: String, anioCursada: Integer, finalAprobado: Boolean, profCursada: String, notas: List[Nota], ubicacion: Ubicacion): Unit = {
 		var materia = new Materia()
 		materia.nombre = nombre
@@ -33,7 +35,9 @@ object HomeMaterias extends CollectionBasedHome[Materia] {
 		validateCreate(materia)
 		this.create(materia)
 	}
+	
 
+	
 	override def validateCreate(materia: Materia): Unit = {
 		materia.validar
 		validarMateriaDuplicada(materia)
