@@ -5,7 +5,7 @@ import org.uqbar.commons.utils.Observable
 import org.joda.time.DateTime
 
 @Observable
-class Nota extends Entity {
+class Nota() extends Entity {
 	var fecha: DateTime =_
 	var descripcion: String =_
 	var aprobada: Boolean = false
@@ -17,4 +17,6 @@ class Nota extends Entity {
 	  if(descripcion == null)
 	    throw new UserException("Tu nota debe tener una descripción.")
 	}
+	
+	def estaAprobada = aprobada
 }

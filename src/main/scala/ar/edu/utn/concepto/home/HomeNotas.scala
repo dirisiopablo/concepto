@@ -46,9 +46,9 @@ object HomeNotas extends CollectionBasedHome[Nota] {
     return realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase())
   }
   
-  	override def getEntityType = classOf[Nota]
+  override def getEntityType = classOf[Nota]
 
-	override def createExample = new Nota
+  override def createExample = new Nota
 
-	override def getCriterio(example: Nota) = null
+  override def getCriterio(example: Nota) = null
 }
