@@ -26,18 +26,14 @@ class EditarNotaWindow(owner: WindowOwner, model: Nota) extends Dialog[Nota](own
 	override def createFormPanel(mainPanel: Panel) = {
 		var form = new Panel(mainPanel)
 		form.setLayout(new ColumnLayout(2))
+		new Label(form).setText("Nombre de la Materia")
+		new TextBox(form).bindValueToProperty("materia")
 		new Label(form).setText("Fecha")
-		new TextBox(form).bindValueToProperty("numero")
-		new Label(form).setText("Nombre del cliente")
-		new TextBox(form).bindValueToProperty("nombre")
-		new Label(form).setText("Modelo del aparato")
-		var selectorModelo = new Selector[Modelo](form)
-		selectorModelo.allowNull(false)
-		selectorModelo.bindValueToProperty("modeloCelular")
-		var propiedadModelos = selectorModelo.bindItems(new ObservableProperty(HomeModelos, "modelos"))
-		propiedadModelos.setAdapter(new PropertyAdapter(classOf[Modelo], "descripcionEntera"))
-		new Label(form).setText("Recibe resumen cuenta en domicilio")
-		new CheckBox(form).bindValueToProperty("recibeResumenCuenta")
+		new TextBox(form).bindValueToProperty("fecha")
+		new Label(form).setText("Descripcion")
+		new TextBox(form).bindValueToProperty("descripcion")
+		new Label(form).setText("Aprobo la Materia")
+		new CheckBox(form).bindValueToProperty("aprobada")
 	}
 
 	override def addActions(actions: Panel) = {
