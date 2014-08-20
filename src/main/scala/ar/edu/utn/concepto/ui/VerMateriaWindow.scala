@@ -101,6 +101,10 @@ class VerMateriaWindow(owner: WindowOwner, model: MateriaInfo) extends Dialog[Ma
 	def createGridActions(mainPanel: Panel) = {
 		var actionsPanel = new Panel(mainPanel)
 		actionsPanel.setLayout(new HorizontalLayout)
+		var crear = new Button(actionsPanel)
+			.setCaption("Nuevo")
+			.onClick(new MessageSend(this, "crearNota"))
+			
 		var edit = new Button(actionsPanel)
 			.setCaption("Editar")
 			.onClick(new MessageSend(this, "modificarNota"))
