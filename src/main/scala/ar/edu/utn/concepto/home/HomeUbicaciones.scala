@@ -27,7 +27,7 @@ object HomeUbicaciones extends CollectionBasedHome[Ubicacion]{
 	  this.create(ubicacion)
 	}
 	
-	def ubicaciones : java.util.List[Ubicacion] = allInstances
+	def ubicaciones = allInstances
 	
 	override def getEntityType = classOf[Ubicacion]
 
